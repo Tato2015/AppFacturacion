@@ -6,6 +6,8 @@
 
 package vista;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author TATO
@@ -37,6 +39,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jmInicio = new javax.swing.JMenu();
         jmiClientes = new javax.swing.JMenuItem();
         jmiProductos = new javax.swing.JMenuItem();
+        jmiCategorias = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jmiUsuarios = new javax.swing.JMenuItem();
         jmProcesos = new javax.swing.JMenu();
@@ -50,6 +53,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         jmiAyuda = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
         jdpPrincipal.setLayout(jdpPrincipalLayout);
@@ -59,10 +67,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         );
         jdpPrincipalLayout.setVerticalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGap(0, 589, Short.MAX_VALUE)
         );
 
         jToolBar1.setRollover(true);
+        jToolBar1.setEnabled(false);
 
         jButton1.setText("Boleta");
 
@@ -77,7 +86,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(472, Short.MAX_VALUE))
+                .addContainerGap(1177, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,10 +103,18 @@ public class frmPrincipal extends javax.swing.JFrame {
         jmInicio.setText("Inicio");
 
         jmiClientes.setText("Clientes");
+        jmiClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiClientesActionPerformed(evt);
+            }
+        });
         jmInicio.add(jmiClientes);
 
         jmiProductos.setText("Productos");
         jmInicio.add(jmiProductos);
+
+        jmiCategorias.setText("Categorias");
+        jmInicio.add(jmiCategorias);
         jmInicio.add(jSeparator1);
 
         jmiUsuarios.setText("Usuarios");
@@ -142,19 +159,46 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpPrincipal)
             .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jdpPrincipal)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jdpPrincipal))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmiClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiClientesActionPerformed
+        if(j == null)
+        {
+            j = new jifCliente();
+            jdpPrincipal.add(j,this.getPosicion());
+        }
+        j.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jmiClientesActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //con este método maximizamos el formulario a pantalla completa
+        this.setExtendedState(MAXIMIZED_HORIZ);
+        //con este método hacemos visible el formulario
+        this.setVisible(true);
+        //con este método bloqueamos la opción de redimensionar
+        this.setResizable(false);
+        //con este método obtenemos la dimensión actual
+        Dimension d = this.getSize();
+        //con este método hacemos que la mínima dimensión sea la actual
+        this.setMinimumSize(d);
+        //posicionamos el formulario al inicio 
+        this.setLocation(0, 0);
+        
+    }//GEN-LAST:event_formWindowOpened
 
     public int getPosicion() {
         this.posicion++;
@@ -213,6 +257,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmProcesos;
     private javax.swing.JMenu jmReportes;
     private javax.swing.JMenuItem jmiAyuda;
+    private javax.swing.JMenuItem jmiCategorias;
     private javax.swing.JMenuItem jmiClientes;
     private javax.swing.JMenuItem jmiPedido;
     private javax.swing.JMenuItem jmiProductos;
