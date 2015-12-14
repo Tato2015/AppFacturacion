@@ -177,7 +177,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         if(j == null)
         {
             j = new jifCliente();
-            jdpPrincipal.add(j,this.getPosicion());
+            jdpPrincipal.add(j,this.getPosicion());            
         }
         j.setVisible(true);
         
